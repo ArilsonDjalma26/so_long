@@ -1,0 +1,37 @@
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include "minilibx/mlx.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "get_next_line/get_next_line.h"
+# include "libft/libft.h"
+
+# define TILE_SIZE 32
+
+typedef struct s_img
+{
+    void    *player;
+    void    *collect;
+    void    *floor;
+    void    *wall;
+    void    *exit;
+} t_img;
+
+typedef struct s_game
+{
+    void    *mlx;
+    void    *mlx_win;
+    t_img   img;
+    char    **map;
+    int     width;
+    int     height;
+}   t_game;
+
+int     count_line(int fd);
+char    **read_map(char *file);
+void    draw_map(t_game *game);
+void    load_images(t_game *game);
+#endif

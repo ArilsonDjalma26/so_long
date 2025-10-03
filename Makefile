@@ -1,0 +1,57 @@
+# Nome do executável
+NAME = so_long
+
+# Compilador e flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I.
+
+# Diretórios
+LIBFT_DIR = ./libft
+MLX_DIR = ./minilibx
+GNL_DIR = ./get_next_line
+
+# Arquivos fonte
+SRCS = so_long.c \
+       init.c \
+       draw.c \
+       readmap.c \
+       $(GNL_DIR)/get_next_line.c \
+       $(GNL_DIR)/get_next_line_utils.c
+
+# Objetos
+OBJS = $(SRCS:.c=.o)
+
+# Bibliotecas
+LIBFT = $(LIBFT_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx.a
+
+# Flags extras para linkar no Linux (X11 e math)
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
+
+# Regra principal
+all: $(NAME)
+
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft $(MLX_FLAGS) -o $(NAME)
+
+# Compila libft
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+# Compila mlx
+
+# Limpar objetos
+clean:
+	rm -f $(OBJS)
+	make -C $(LIBFT_DIR) clean
+# make -C $(MLX_DIR) clean
+
+# Limpar tudo
+fclean: clean
+	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
+
+# Recompilar do zero
+re: fclean all
+
+.PHONY: all clean fclean re
