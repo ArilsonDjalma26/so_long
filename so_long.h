@@ -17,7 +17,9 @@ typedef struct s_img
     void    *collect;
     void    *floor;
     void    *wall;
+    void    *block1;
     void    *exit;
+    void    *planet;
 } t_img;
 
 typedef struct s_game

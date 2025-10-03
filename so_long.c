@@ -21,7 +21,26 @@ int     count_map_height(char **map)
 		y++;
     return (y);
 }
+int get_map_width(char **map)
+{
+	int		i;
+	int		max;
+	int		len;
 
+	i = 0;
+	max = 0;
+
+	while (map[i])
+	{
+		len = ft_strlen(map[i]);
+		if (map[i][len - 1] == '\n')
+			len--;
+		if (len > max)
+			max = len;
+		i++;
+	}
+	return (max);
+}
 int main(void)
 {
 	t_game	game;
@@ -30,11 +49,11 @@ int main(void)
 	if (!game.mlx)
 	return (1);
 
-	game.map = read_map("maps/map.ber");
+	game.map = read_map("maps/map5.ber");
 	if (!game.map)
 		return (1);
 	game.height = count_map_height(game.map);
-	game.width = ft_strlen(game.map[0]);
+	game.width = get_map_width(game.map);
 	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE, "so_long");
 
 	load_images(&game);

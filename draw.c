@@ -33,6 +33,10 @@ void    draw_map(t_game *game)
                     mlx_put_image_to_window(game -> mlx, game -> mlx_win, game -> img.collect, x * TILE_SIZE, y * TILE_SIZE);
             else if (game -> map[y][x] == 'E')
                     mlx_put_image_to_window(game -> mlx, game -> mlx_win, game -> img.exit, x * TILE_SIZE, y * TILE_SIZE);
+            else if (game -> map[y][x] == 'p')
+                    mlx_put_image_to_window(game -> mlx, game -> mlx_win, game -> img.planet, x * TILE_SIZE, y * TILE_SIZE);
+            else if (game -> map[y][x] == 'B')
+                    mlx_put_image_to_window(game -> mlx, game -> mlx_win, game -> img.block1, x * TILE_SIZE, y * TILE_SIZE);
             x++;
         }
         y++;
