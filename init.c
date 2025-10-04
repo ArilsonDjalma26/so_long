@@ -24,4 +24,5 @@ void    load_images(t_game *game)
     game->img.collect = mlx_xpm_file_to_image(game->mlx, "sprites/collect.xpm", &w, &h);
     game->img.exit = mlx_xpm_file_to_image(game->mlx, "sprites/exit.xpm", &w, &h);
     game->img.planet = mlx_xpm_file_to_image(game->mlx, "sprites/planet.xpm", &w, &h);
+    game->img.star = mlx_xpm_file_to_image(game->mlx, "sprites/star.xpm", &w, &h);
 }

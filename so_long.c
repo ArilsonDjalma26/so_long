@@ -41,15 +41,19 @@ int get_map_width(char **map)
 	}
 	return (max);
 }
-int main(void)
+int main(int argc, char **argv)
 {
+	(void)argc;
+	if(!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+		perror("Arquivo invalido");
 	t_game	game;
 
 	game.mlx = mlx_init();
 	if (!game.mlx)
 	return (1);
 
-	game.map = read_map("maps/map5.ber");
+	game.map = read_map(argv[1]);
+	
 	if (!game.map)
 		return (1);
 	game.height = count_map_height(game.map);

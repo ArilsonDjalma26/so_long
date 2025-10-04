@@ -20,6 +20,7 @@ typedef struct s_img
     void    *block1;
     void    *exit;
     void    *planet;
+    void    *star;
 } t_img;
 
 typedef struct s_game
