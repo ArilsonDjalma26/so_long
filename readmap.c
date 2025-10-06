@@ -52,5 +52,8 @@ char    **read_map(char *file)
     }
     map[i] = NULL;
     close(fd);
+
+    if (!map || map[0] == NULL)
+        exit_error("Arquivo vazio ou inesistente!");
     return(map);
 }

@@ -8,6 +8,7 @@
 # include <fcntl.h>
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
 
 # define TILE_SIZE 32
 
@@ -37,4 +38,7 @@ int     count_line(int fd);
 char    **read_map(char *file);
 void    draw_map(t_game *game);
 void    load_images(t_game *game);
+void	exit_error(const char *msg);
+void	free_map(char **map);
+void	print_error(const char msg, t_game *game);
 #endif

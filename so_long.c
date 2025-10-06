@@ -12,40 +12,11 @@
 
 #include "so_long.h"
 
-int     count_map_height(char **map)
-{
-    int     y;
-
-    y = 0;
-    while(map[y])
-		y++;
-    return (y);
-}
-int get_map_width(char **map)
-{
-	int		i;
-	int		max;
-	int		len;
-
-	i = 0;
-	max = 0;
-
-	while (map[i])
-	{
-		len = ft_strlen(map[i]);
-		if (map[i][len - 1] == '\n')
-			len--;
-		if (len > max)
-			max = len;
-		i++;
-	}
-	return (max);
-}
 int main(int argc, char **argv)
 {
 	(void)argc;
 	if(!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
-		perror("Arquivo invalido");
+		perror("Mapa deve ter a extencao .ber");
 	t_game	game;
 
 	game.mlx = mlx_init();
@@ -56,8 +27,6 @@ int main(int argc, char **argv)
 	
 	if (!game.map)
 		return (1);
-	game.height = count_map_height(game.map);
-	game.width = get_map_width(game.map);
 	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE, "so_long");
 
 	load_images(&game);
