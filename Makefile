@@ -17,6 +17,11 @@ SRCS = so_long.c \
        draw.c \
        readmap.c \
 	   errors.c \
+	   parse_map.c \
+	   check_rectangle.c \
+	   check_walls.c \
+	   check_elements.c \
+	   init_game.c \
        $(GNL_DIR)/get_next_line.c \
        $(GNL_DIR)/get_next_line_utils.c \
 

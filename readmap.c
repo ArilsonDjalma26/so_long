@@ -26,6 +26,18 @@ int     count_line(int fd)
     return (count);
 }
 
+static char    *remove_newline(char *line)
+{
+    int len;
+    char    *clean_line;
+    
+    len = ft_strlen(line);
+    if(line[len - 1] == '\n')
+        line[len - 1] = '\0';
+    clean_line = ft_strdup(line);
+    free(line);
+    return (clean_line);
+}
 char    **read_map(char *file)
 {
     int     fd;
@@ -47,7 +59,7 @@ char    **read_map(char *file)
         return (NULL);
     while((line = get_next_line(fd)) != NULL)
     {
-        map[i] = line;
+        map[i] = remove_newline(line);
         i++;
     }
     map[i] = NULL;

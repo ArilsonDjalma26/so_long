@@ -32,6 +32,11 @@ typedef struct s_game
     char    **map;
     int     width;
     int     height;
+    int     player_x;
+    int     player_y;
+    int     player_count;
+    int     collect_count;
+    int     exit_count;
 }   t_game;
 
 int     count_line(int fd);
@@ -40,5 +45,10 @@ void    draw_map(t_game *game);
 void    load_images(t_game *game);
 void	exit_error(const char *msg);
 void	free_map(char **map);
-void	print_error(const char msg, t_game *game);
+void	print_error(const char *msg, t_game *game);
+void    parse_map(char *file, t_game *game);
+void    check_rectangle(char **map, t_game *game);
+void    init_game(t_game *game);
+void    check_walls(char **map, t_game *game);
+void    check_elements(char **map, t_game *game);
 #endif

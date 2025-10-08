@@ -14,23 +14,20 @@
 
 int main(int argc, char **argv)
 {
-	(void)argc;
+	if (argc != 2)
+		exit_error("Erro\nUso: ./so_long <maps/map.ber>\n");
 	if(!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
-		perror("Mapa deve ter a extencao .ber");
+		exit_error("Erro\nMapa deve ter a extencao .ber\n");
 	t_game	game;
-
+	init_game(&game);
+	parse_map(argv[1], &game);
 	game.mlx = mlx_init();
 	if (!game.mlx)
-	return (1);
-
-	game.map = read_map(argv[1]);
-	
-	if (!game.map)
-		return (1);
+		exit_error("Erro ao inicializar Minilibx");
 	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE, "so_long");
-
+	if (!game.mlx_win)
+		exit_error("Erro ao criar janela\n");
 	load_images(&game);
 	draw_map(&game);
-
 	mlx_loop(game.mlx);
 }

@@ -18,7 +18,7 @@ void	exit_error(const char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	print_error(const char msg, t_game *game)
+void	print_error(const char *msg, t_game *game)
 {
 	if(game)
 		free_map(game->map);

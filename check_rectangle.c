@@ -23,10 +23,9 @@ void    check_rectangle(char **map, t_game *game)
     while(map[i])
     {
         if((int)ft_strlen(map[i]) != width)
-            print_error("Erro\nO mapa nao e rectagulo", game);
+            print_error("Erro\nO mapa nao e rectagulo\n", game);
         i++;
     }
-
     game->width = width;
     game->height = i;
 }

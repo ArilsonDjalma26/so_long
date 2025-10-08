@@ -10,4 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
 
+void    check_walls(char **map, t_game *game)
+{
+    int x;
+    int y;
+
+    y = 0;
+    while (map[y])
+    {
+        x = 0;
+        while (map[y][x])
+        {
+            if ((y == 0 ) || (y = game -> height - 1) || (x = 0 || game->width - 1))
+            {
+                if (map[y][x] != '1')
+                    print_error("Mapa nao esta rodeado de paredes\n", game);
+            }
+            x++;
+        }
+        y++;
+    }
+}
