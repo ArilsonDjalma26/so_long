@@ -22,6 +22,10 @@ SRCS = so_long.c \
 	   check_walls.c \
 	   check_elements.c \
 	   init_game.c \
+	   update_position.c \
+	   handle_keypress.c \
+	   handle_close.c \
+	   move_player.c \
        $(GNL_DIR)/get_next_line.c \
        $(GNL_DIR)/get_next_line_utils.c \
 

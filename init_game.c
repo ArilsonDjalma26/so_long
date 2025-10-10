@@ -32,4 +32,5 @@ void    init_game(t_game *game)
     game->player_count = 0;
     game->collect_count = 0;
     game->exit_count = 0;
+    game->moves = 0;
 }

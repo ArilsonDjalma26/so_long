@@ -29,5 +29,9 @@ int main(int argc, char **argv)
 		exit_error("Erro ao criar janela\n");
 	load_images(&game);
 	draw_map(&game);
+
+	mlx_hook(game.mlx_win, 2, 1L << 0, handle_keypress, &game);
+	mlx_hook(game.mlx_win, 17, 0, handle_close, &game);
+	
 	mlx_loop(game.mlx);
 }

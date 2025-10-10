@@ -11,6 +11,11 @@
 # include "ft_printf/ft_printf.h"
 
 # define TILE_SIZE 32
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_ESC 65307
 
 typedef struct s_img
 {
@@ -37,6 +42,7 @@ typedef struct s_game
     int     player_count;
     int     collect_count;
     int     exit_count;
+    int     moves;
 }   t_game;
 
 int     count_line(int fd);
@@ -51,4 +57,8 @@ void    check_rectangle(char **map, t_game *game);
 void    init_game(t_game *game);
 void    check_walls(char **map, t_game *game);
 void    check_elements(char **map, t_game *game);
+void    update_position(t_game *game, int new_x, int new_y);
+int     handle_keypress(int keycode, t_game *game);
+int     handle_close(t_game *game);
+void    move_player(t_game *game, int dx, int dy);
 #endif
