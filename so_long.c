@@ -12,26 +12,26 @@
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	if (argc != 2)
-		exit_error("Erro\nUso: ./so_long <maps/map.ber>\n");
-	if(!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
-		exit_error("Erro\nMapa deve ter a extencao .ber\n");
 	t_game	game;
+
+	if (argc != 2)
+		exit_error("Uso: ./so_long <maps/map.ber>\n");
+	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+		exit_error("Mapa deve ter a extencao .ber\n");
 	init_game(&game);
 	parse_map(argv[1], &game);
 	game.mlx = mlx_init();
 	if (!game.mlx)
 		exit_error("Erro ao inicializar Minilibx");
-	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE, "so_long");
+	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE,
+			game.height * TILE_SIZE, "so_long");
 	if (!game.mlx_win)
 		exit_error("Erro ao criar janela\n");
 	load_images(&game);
 	draw_map(&game);
-
 	mlx_hook(game.mlx_win, 2, 1L << 0, handle_keypress, &game);
 	mlx_hook(game.mlx_win, 17, 0, handle_close, &game);
-	
 	mlx_loop(game.mlx);
 }

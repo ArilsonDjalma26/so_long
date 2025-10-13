@@ -1,71 +1,83 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   readmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 14:18:24 by aalbano           #+#    #+#             */
-/*   Updated: 2025/09/26 14:18:27 by aalbano          ###   ########.fr       */
+/*   Updated: 2025/10/13 12:11:37 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int     count_line(int fd)
+int	count_line(int fd)
 {
-    int     count;
-    char    *line;
+	int		count;
+	char	*line;
 
-    count = 0;
-    while((line = get_next_line(fd)) != NULL)
-    {
-        count++;
-        free(line);
-    }
-    return (count);
+	count = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		count++;
+		free (line);
+		line = get_next_line(fd);
+	}
+	return (count);
 }
 
-static char    *remove_newline(char *line)
+static char	*remove_newline(char *line)
 {
-    int len;
-    char    *clean_line;
-    
-    len = ft_strlen(line);
-    if(line[len - 1] == '\n')
-        line[len - 1] = '\0';
-    clean_line = ft_strdup(line);
-    free(line);
-    return (clean_line);
+	int		len;
+	char	*clean_line;
+
+	len = ft_strlen (line);
+	if (line[len - 1] == '\n')
+		line[len - 1] = '\0';
+	clean_line = ft_strdup (line);
+	free (line);
+	return (clean_line);
 }
-char    **read_map(char *file)
+
+char	**fill_map(int fd, int height)
 {
-    int     fd;
-    char    *line;
-    char    **map;
-    int     height;
-    int     i;
+	char	**map;
+	char	*line;
+	int		i;
 
-    fd = open(file, O_RDONLY);
-    i = 0;
-    if (fd < 0)
-        return (NULL);
-    height = count_line(fd);
-    close(fd);
-    map = malloc (sizeof(char*) * (height + 1));
-    
-    fd = open(file, O_RDONLY);
-    if (fd < 0)
-        return (NULL);
-    while((line = get_next_line(fd)) != NULL)
-    {
-        map[i] = remove_newline(line);
-        i++;
-    }
-    map[i] = NULL;
-    close(fd);
+	i = 0;
+	map = malloc(sizeof(char *) * (height + 1));
+	if (!map)
+		return (NULL);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		map[i++] = remove_newline(line);
+		line = get_next_line(fd);
+	}
+	map[i] = NULL;
+	return (map);
+}
 
-    if (!map || map[0] == NULL)
-        exit_error("Arquivo vazio ou inesistente!");
-    return(map);
+char	**read_map(char *file)
+{
+	int		fd;
+	int		height;
+	char	**map;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	height = count_line (fd);
+	close(fd);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	map = fill_map(fd, height);
+	close (fd);
+	if (!map || map[0] == NULL)
+		exit_error("Arquivo vazio ou inesistente!");
+	return (map);
 }

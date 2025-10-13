@@ -12,20 +12,19 @@
 
 #include "so_long.h"
 
-
-void    check_rectangle(char **map, t_game *game)
+void	check_rectangle(char **map, t_game *game)
 {
-    int     width;
-    int     i;
+	int	width;
+	int	i;
 
-    i = 0;
-    width = ft_strlen(map[0]);
-    while(map[i])
-    {
-        if((int)ft_strlen(map[i]) != width)
-            print_error("Erro\nO mapa nao e rectagulo\n", game);
-        i++;
-    }
-    game->width = width;
-    game->height = i;
+	i = 0;
+	width = ft_strlen(map[0]);
+	while (map[i])
+	{
+		if ((int)ft_strlen(map[i]) != width)
+			print_error("O mapa nao e rectagulo\n", game);
+		i++;
+	}
+	game->width = width;
+	game->height = i;
 }

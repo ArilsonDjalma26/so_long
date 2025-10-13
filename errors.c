@@ -14,26 +14,26 @@
 
 void	exit_error(const char *msg)
 {
-	ft_printf("Erro\n%s", msg);
-	exit(EXIT_FAILURE);
+	ft_printf ("Erro\n%s", msg);
+	exit (EXIT_FAILURE);
 }
 
 void	print_error(const char *msg, t_game *game)
 {
-	if(game)
+	if (game)
 		free_map(game->map);
-	ft_printf("Erro\n%s", msg);
-	exit(EXIT_FAILURE);
+	ft_printf ("Erro\n%s", msg);
+	exit (EXIT_FAILURE);
 }
 
 void	free_map(char **map)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	if(!map)
+	if (!map)
 		return ;
-	while(map[i])
+	while (map[i])
 	{
 		free(map[i]);
 		i++;
