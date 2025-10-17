@@ -1,13 +1,12 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft
 MLX_DIR = ./minilibx
 GNL_DIR = ./get_next_line
 PRINTF_DIR = ./ft_printf
-
 SRCS = so_long.c \
        init.c \
        draw.c \
@@ -40,6 +39,9 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
 
+$(MLX):
+	make -C $(MLX_DIR)
+
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
@@ -48,8 +50,10 @@ $(PRINTF):
 
 clean:
 	rm -f $(OBJS)
+	make -C $(MLX_DIR) clean
 	make -C $(LIBFT_DIR) clean
 	make -C $(PRINTF_DIR) clean
+	
 
 fclean: clean
 	rm -f $(NAME)

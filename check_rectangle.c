@@ -27,4 +27,6 @@ void	check_rectangle(char **map, t_game *game)
 	}
 	game->width = width;
 	game->height = i;
+	if (game -> width < 5 || game -> height < 5)
+		print_error("Mapa demasiado pequeno para ser jogavel\n", game);
 }

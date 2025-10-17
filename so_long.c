@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		exit_error("Uso: ./so_long <maps/map.ber>\n");
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+	
 		exit_error("Mapa deve ter a extencao .ber\n");
 	init_game(&game);
 	parse_map(argv[1], &game);

@@ -14,7 +14,8 @@
 
 void	exit_error(const char *msg)
 {
-	ft_printf ("Erro\n%s", msg);
+	write(2,"Erro\n",5);
+	ft_putendl_fd(msg,2);
 	exit (EXIT_FAILURE);
 }
 
@@ -22,7 +23,8 @@ void	print_error(const char *msg, t_game *game)
 {
 	if (game)
 		free_map(game->map);
-	ft_printf ("Erro\n%s", msg);
+	write(2,"Erro\n",5);
+	ft_putendl_fd(msg,2);
 	exit (EXIT_FAILURE);
 }
 
