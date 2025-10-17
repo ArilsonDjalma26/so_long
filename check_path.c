@@ -6,7 +6,7 @@
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:34:05 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/13 13:37:41 by aalbano          ###   ########.fr       */
+/*   Updated: 2025/10/17 12:41:01 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ static char	**copy_map(char **map, int height)
 
 static void	flood_fill(char **map, int x, int y, t_game *game)
 {
-	if (x < 0 || y < 0 || !map[y] || map[y][x] == '1' || map[y][x] == 'V')
+	if (x < 0 || y < 0 || !map[y]
+		|| map[y][x] == '1'
+		|| map[y][x] == 'B' || map[y][x] == 'V')
 		return ;
 	if (map[y][x] == 'E')
 		game -> reached_exit = 1;

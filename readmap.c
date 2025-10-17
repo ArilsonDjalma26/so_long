@@ -6,7 +6,7 @@
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 14:18:24 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/17 11:16:46 by aalbano          ###   ########.fr       */
+/*   Updated: 2025/10/17 11:48:27 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**read_map(char *file)
 	int		fd;
 	int		height;
 	char	**map;
-	
+
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
@@ -78,6 +78,6 @@ char	**read_map(char *file)
 	map = fill_map(fd, height);
 	close (fd);
 	if (!map || map[0] == NULL)
-		ft_putendl_fd("Arquivo vazio ou inesistente!",2);
+		ft_putendl_fd ("Arquivo vazio ou inesistente!", 2);
 	return (map);
 }

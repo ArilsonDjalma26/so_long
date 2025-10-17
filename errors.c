@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:34:38 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/06 14:37:22 by aalbano          ###   ########.fr       */
+/*   Updated: 2025/10/17 11:47:37 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	exit_error(const char *msg)
 {
-	write(2,"Erro\n",5);
-	ft_putendl_fd(msg,2);
+	write (2, "Erro\n", 5);
+	ft_putendl_fd (msg, 2);
 	exit (EXIT_FAILURE);
 }
 
 void	print_error(const char *msg, t_game *game)
 {
 	if (game)
-		free_map(game->map);
-	write(2,"Erro\n",5);
-	ft_putendl_fd(msg,2);
+		free_map (game->map);
+	write (2, "Erro\n", 5);
+	ft_putendl_fd (msg, 2);
 	exit (EXIT_FAILURE);
 }
 
@@ -37,8 +37,8 @@ void	free_map(char **map)
 		return ;
 	while (map[i])
 	{
-		free(map[i]);
+		free (map[i]);
 		i++;
 	}
-	free(map);
+	free (map);
 }
