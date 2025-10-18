@@ -38,8 +38,14 @@ static void	flood_fill(char **map, int x, int y, t_game *game)
 		|| map[y][x] == '1'
 		|| map[y][x] == 'B' || map[y][x] == 'V')
 		return ;
-	if (map[y][x] == 'E')
-		game -> reached_exit = 1;
+        if (map[y][x] == 'E' && game -> collect_count != game -> collected)
+                return ;
+        if (map[y][x] == 'E')
+        {
+				
+                game -> reached_exit = 1;
+                return ;
+        }
 	if (map[y][x] == 'C')
 		game -> collected++;
 	map[y][x] = 'V';
