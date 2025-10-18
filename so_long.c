@@ -24,11 +24,11 @@ int	main(int argc, char **argv)
 	parse_map(argv[1], &game);
 	game.mlx = mlx_init();
 	if (!game.mlx)
-		exit_error("Erro ao inicializar Minilibx\n");
+		print_error("Erro ao inicializar Minilibx\n", &game);
 	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE,
 			game.height * TILE_SIZE, "so_long\n");
 	if (!game.mlx_win)
-		exit_error("Erro ao criar janela\n");
+		print_error("Erro ao criar janela\n", &game);
 	load_images(&game);
 	draw_map(&game);
 	mlx_hook(game.mlx_win, 2, 1L << 0, handle_keypress, &game);
