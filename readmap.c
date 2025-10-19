@@ -19,9 +19,14 @@ int	count_line(int fd)
 
 	count = 0;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (line != NULL && line[0] != '\0' && !(line[0] == '\n' && line[1] == '\0'))
 	{
 		count++;
+		free (line);
+		line = get_next_line(fd);
+	}
+	while(line != NULL)
+	{
 		free (line);
 		line = get_next_line(fd);
 	}
@@ -43,21 +48,31 @@ static char	*remove_newline(char *line)
 
 char	**fill_map(int fd, int height)
 {
+	char	*tmp;
 	char	**map;
 	char	*line;
 	int		i;
 
 	i = 0;
+	tmp = NULL;
 	map = malloc(sizeof(char *) * (height + 1));
 	if (!map)
 		return (NULL);
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (i < height)
 	{
 		map[i++] = remove_newline(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	map[i] = NULL;
+	while(1)
+	{
+		tmp = get_next_line(fd);
+		if(!tmp)
+			break;
+		free(tmp);
+	}
 	return (map);
 }
 

@@ -79,6 +79,7 @@ void	load_images(t_game *game);
 void	exit_error(const char *msg);
 void	free_map(char **map);
 void	print_error(const char *msg, t_game *game);
+void	print_intern_error(t_game *game);
 void	parse_map(char *file, t_game *game);
 void	check_rectangle(char **map, t_game *game);
 void	init_game(t_game *game);

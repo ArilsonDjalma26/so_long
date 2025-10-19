@@ -21,7 +21,7 @@ static char	**copy_map(char **map, int height)
 	copy = malloc(sizeof(char *) * (height + 1));
 	if (!copy)
 		return (NULL);
-	while (map[i])
+	while (i <  height && map[i])
 	{
 		copy[i] = ft_strdup(map[i]);
 		if (!copy[i])
@@ -38,11 +38,8 @@ static void	flood_fill(char **map, int x, int y, t_game *game)
 		|| map[y][x] == '1'
 		|| map[y][x] == 'B' || map[y][x] == 'V')
 		return ;
-        if (map[y][x] == 'E' && game -> collect_count != game -> collected)
-                return ;
         if (map[y][x] == 'E')
         {
-				
                 game -> reached_exit = 1;
                 return ;
         }

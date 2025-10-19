@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	parse_map(argv[1], &game);
 	game.mlx = mlx_init();
 	if (!game.mlx)
-		print_error("Erro ao inicializar Minilibx\n", &game);
+	print_error("Erro ao inicializar Minilibx\n", &game);
 	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE,
 			game.height * TILE_SIZE, "so_long\n");
 	if (!game.mlx_win)

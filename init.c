@@ -24,23 +24,63 @@ void	load_images(t_game *game)
 	game->xpm.file_p = "sprites/player.xpm";
 	game->xpm.file_c = "sprites/collect.xpm";
 	game->xpm.file_e = "sprites/exit.xpm";
-        mlx = game -> mlx;
+        mlx = game->mlx;
         game->img.wall = mlx_xpm_file_to_image (mlx, game->xpm.file_w, &w, &h);
         if (!game->img.wall)
-                print_error("Erro ao carregar o sprite\n", game);
+        {
+                mlx_destroy_window(game->mlx,game->mlx_win);
+	        mlx_destroy_display(game->mlx);
+                print_intern_error(game);
+        }
         game->img.block1 = mlx_xpm_file_to_image (mlx, game->xpm.file_b, &w, &h);
         if (!game->img.block1)
-                print_error("Erro ao carregar o sprite\n", game);
+        {
+                mlx_destroy_image(game->mlx,game->img.wall);
+                mlx_destroy_window(game->mlx,game->mlx_win);
+	        mlx_destroy_display(game->mlx);
+                print_intern_error(game);
+        }
         game->img.floor = mlx_xpm_file_to_image (mlx, game->xpm.file_f, &w, &h);
         if (!game->img.floor)
-                print_error("Erro ao carregar o sprite\n", game);
+        {
+                mlx_destroy_image(game->mlx,game->img.wall);
+                mlx_destroy_image(game->mlx,game->img.block1);
+                mlx_destroy_window(game->mlx,game->mlx_win);
+	        mlx_destroy_display(game->mlx);
+                print_intern_error(game);
+
+        }
         game->img.player = mlx_xpm_file_to_image (mlx, game->xpm.file_p, &w, &h);
         if (!game->img.player)
-                print_error("Erro ao carregar o sprite\n", game);
+        {
+                mlx_destroy_image(game->mlx,game->img.wall);
+                mlx_destroy_image(game->mlx,game->img.block1);
+                mlx_destroy_image(game->mlx,game->img.floor);
+                mlx_destroy_window(game->mlx,game->mlx_win);
+	        mlx_destroy_display(game->mlx);
+                print_intern_error(game);
+        }
         game->img.collect = mlx_xpm_file_to_image (mlx, game->xpm.file_c, &w, &h);
         if (!game->img.collect)
-                print_error("Erro ao carregar o sprite\n", game);
+        {
+                mlx_destroy_image(game->mlx,game->img.wall);
+                mlx_destroy_image(game->mlx,game->img.block1);
+                mlx_destroy_image(game->mlx,game->img.floor);
+                mlx_destroy_image(game->mlx,game->img.player);
+                mlx_destroy_window(game->mlx,game->mlx_win);
+	        mlx_destroy_display(game->mlx);
+                print_intern_error(game);
+        }
         game->img.exit = mlx_xpm_file_to_image (mlx, game->xpm.file_e, &w, &h);
         if (!game->img.exit)
-                print_error("Erro ao carregar o sprite\n", game);
+        {
+                mlx_destroy_image(game->mlx,game->img.wall);
+                mlx_destroy_image(game->mlx,game->img.block1);
+                mlx_destroy_image(game->mlx,game->img.floor);
+                mlx_destroy_image(game->mlx,game->img.player);
+                mlx_destroy_image(game->mlx,game->img.collect);
+                mlx_destroy_window(game->mlx,game->mlx_win);
+	        mlx_destroy_display(game->mlx);
+                print_intern_error(game);
+        }
 }
