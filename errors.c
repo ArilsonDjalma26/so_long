@@ -14,17 +14,24 @@
 
 void	exit_error(const char *msg)
 {
-	write (2, "Erro\n", 5);
+	write (2, "Error\n", 5);
 	ft_putendl_fd (msg, 2);
 	exit (EXIT_FAILURE);
 }
 
 void	print_error(const char *msg, t_game *game)
 {
-	if (game)
-		free_map (game->map);
-	write (2, "Erro\n", 5);
+	write (2, "Error\n", 5);
 	ft_putendl_fd (msg, 2);
+	if (game)
+	{
+		free_map(game->map);
+		if (game->mlx)
+		{
+			mlx_destroy_display(game->mlx);
+			free(game->mlx);
+		}
+	}
 	exit (EXIT_FAILURE);
 }
 
