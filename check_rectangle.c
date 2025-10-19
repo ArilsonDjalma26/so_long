@@ -17,12 +17,16 @@ void	check_rectangle(char **map, t_game *game)
 	int	width;
 	int	i;
 	i = 0;
-	width = ft_strlen(map[1]);
-	while (map[i])
+	width = 0;
+	if (map || map[0])
 	{
-		if ((int)ft_strlen(map[i]) != width)
-			print_error("O mapa nao e rectagulo\n", game);
-		i++;
+		width = ft_strlen(map[0]);
+		while (map[i])
+		{
+			if ((int)ft_strlen(map[i]) != width)
+				print_error("O mapa nao e rectagulo\n", game);
+			i++;
+		}
 	}
 	game->width = width;
 	game->height = i;

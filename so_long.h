@@ -15,6 +15,8 @@
 
 # include "minilibx/mlx.h"
 # include <stdio.h>
+# include <string.h>
+# include <errno.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -73,7 +75,7 @@ typedef struct s_game
 }t_game;
 
 int		count_line(int fd);
-char	**read_map(char *file);
+char	**read_map(char *file, t_game *game);
 void	draw_map(t_game *game);
 void	load_images(t_game *game);
 void	exit_error(const char *msg);

@@ -14,9 +14,10 @@
 
 void	parse_map(char *file, t_game *game)
 {
-	game -> map = read_map (file);
+	game -> map = read_map (file, game);
 	if (!game->map)
-		exit_error("Erro ao ler o mapa\n");
+		exit_error(strerror(errno));
+		// exit_error("Erro ao ler o mapa\n");
 	check_rectangle (game->map, game);
 	check_walls (game->map, game);
 	check_elements (game->map, game);

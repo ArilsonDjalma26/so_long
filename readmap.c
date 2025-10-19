@@ -76,7 +76,7 @@ char	**fill_map(int fd, int height)
 	return (map);
 }
 
-char	**read_map(char *file)
+char	**read_map(char *file, t_game *game)
 {
 	int		fd;
 	int		height;
@@ -93,6 +93,9 @@ char	**read_map(char *file)
 	map = fill_map(fd, height);
 	close (fd);
 	if (!map || map[0] == NULL)
-		ft_putendl_fd ("Arquivo vazio ou inesistente!", 2);
+	{
+		free(map);
+		print_error ("Arquivo vazio ou inesistente!", game);
+	}
 	return (map);
 }

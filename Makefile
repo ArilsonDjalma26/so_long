@@ -27,6 +27,8 @@ SRCS = so_long.c \
 
 OBJS = $(SRCS:.c=.o)
 
+HEADER = so_long.h
+
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx.a
 PRINTF = $(PRINTF_DIR)/libftprintf.a
@@ -34,6 +36,8 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
 
 all: $(NAME)
+
+$(OBJS): $(HEADER)
 
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
