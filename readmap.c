@@ -48,30 +48,25 @@ static char	*remove_newline(char *line)
 
 char	**fill_map(int fd, int height)
 {
-	char	*tmp;
 	char	**map;
 	char	*line;
 	int		i;
 
 	i = 0;
-	tmp = NULL;
 	map = malloc(sizeof(char *) * (height + 1));
 	if (!map)
 		return (NULL);
 	line = get_next_line(fd);
-	while (i < height)
+	while (i < height && line)
 	{
 		map[i++] = remove_newline(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 	map[i] = NULL;
-	while(1)
+	while(line)
 	{
-		tmp = get_next_line(fd);
-		if(!tmp)
-			break;
-		free(tmp);
+		free(line);
+		line = get_next_line(fd);
 	}
 	return (map);
 }
@@ -95,7 +90,7 @@ char	**read_map(char *file, t_game *game)
 	if (!map || map[0] == NULL)
 	{
 		free(map);
-		print_error ("Arquivo vazio ou inesistente!", game);
+		print_error ("Mapa vazio ou invalido", game);
 	}
 	return (map);
 }

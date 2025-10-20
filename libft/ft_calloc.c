@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/06/20 11:45:32 by aalbano           #+#    #+#             */
+/*   Updated: 2025/06/20 12:11:19 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+//calloc aloca memória com size bytes de n elementos
 
-void	check_rectangle(char **map, t_game *game)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int	width;
-	int	i;
-	i = 0;
-	width = 0;
-	if (map || map[0])
-	{
-		width = ft_strlen(map[0]);
-		while (map[i])
-		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
-			i++;
-		}
-	}
-	game->width = width;
-	game->height = i;
+	void	*ptr;
+
+	if (nmemb != 0 && size > SIZE_MAX / nmemb)
+		return (NULL);
+	ptr = (void *) malloc (nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset (ptr, '\0', nmemb * size);
+	return (ptr);
 }

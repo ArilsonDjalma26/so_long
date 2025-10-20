@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   toupper.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/06/10 10:24:52 by aalbano           #+#    #+#             */
+/*   Updated: 2025/06/10 10:35:09 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	check_rectangle(char **map, t_game *game)
+int	ft_toupper(int c)
 {
-	int	width;
-	int	i;
-	i = 0;
-	width = 0;
-	if (map || map[0])
+	if (c >= 97 && c <= 122)
 	{
-		width = ft_strlen(map[0]);
-		while (map[i])
-		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
-			i++;
-		}
+		c = c - 32;
+		return (c);
 	}
-	game->width = width;
-	game->height = i;
+	return (c);
 }

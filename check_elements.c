@@ -15,7 +15,7 @@
 static void	check_tile(char c, t_game *game)
 {
 	if (!ft_strchr("10PBEC", c))
-		print_error("Mapa contem caracteres invalidos\n", game);
+		print_error("Mapa contem caracteres invalidos", game);
 	if (c == 'P')
 		game -> player_count++;
 	else if (c == 'E')
@@ -47,5 +47,5 @@ void	check_elements(char **map, t_game *game)
 	}
 	if ((game->player_count != 1)
 		|| (game -> collect_count < 1) || (game->exit_count != 1))
-		print_error ("Mapa deve ter 1 (P) 1 (E) e ao menos 1 (C)\n", game);
+		print_error ("Mapa deve ter 1 (P) 1 (E) e ao menos 1 (C)", game);
 }

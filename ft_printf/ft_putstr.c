@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/07/15 17:44:57 by aalbano           #+#    #+#             */
+/*   Updated: 2025/07/15 17:52:24 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	check_rectangle(char **map, t_game *game)
+int	ft_putstr(char *s)
 {
-	int	width;
-	int	i;
-	i = 0;
-	width = 0;
-	if (map || map[0])
-	{
-		width = ft_strlen(map[0]);
-		while (map[i])
+	int		count;
+
+	count = 0;
+	if (!s)
+		count += write(1, "(null)", 6);
+	else
+	{	
+		count = 0;
+		while (*s)
 		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
-			i++;
+			write(1, *(&s), 1);
+			s++;
+			count++;
 		}
 	}
-	game->width = width;
-	game->height = i;
+	return (count);
 }

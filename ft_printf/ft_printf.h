@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/07/15 11:42:12 by aalbano           #+#    #+#             */
+/*   Updated: 2025/07/22 12:05:30 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H        
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdint.h>
 
-void	check_rectangle(char **map, t_game *game)
-{
-	int	width;
-	int	i;
-	i = 0;
-	width = 0;
-	if (map || map[0])
-	{
-		width = ft_strlen(map[0]);
-		while (map[i])
-		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
-			i++;
-		}
-	}
-	game->width = width;
-	game->height = i;
-}
+int		ft_printf(const char *format, ...);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_putnbr_uns(int n);
+int		ft_putchar(char ch);
+int		ft_print_hexa(int n, int ch);
+int		ft_print_pointer(uintptr_t p);
+char	*ft_strchr(const char *str, int c);
+#endif

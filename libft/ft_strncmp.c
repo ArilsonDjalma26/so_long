@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/06/13 09:08:17 by aalbano           #+#    #+#             */
+/*   Updated: 2025/06/13 09:08:26 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	check_rectangle(char **map, t_game *game)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	width;
-	int	i;
+	size_t		i;
+
+	if ((!s1 && !s2) || n == 0)
+		return (0);
+	if (!s1)
+		return (-1);
+	if (!s2)
+		return (1);
 	i = 0;
-	width = 0;
-	if (map || map[0])
+	while (i < n && s1[i] && s2[i])
 	{
-		width = ft_strlen(map[0]);
-		while (map[i])
-		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
-			i++;
-		}
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-	game->width = width;
-	game->height = i;
+	if (i < n)
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
 }

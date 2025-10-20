@@ -12,75 +12,48 @@
 
 #include "so_long.h"
 
+static void   *load_image(t_game *game, char *path, void **to_free[], int n)
+{
+        int     w;
+        int     h;
+        void    *img;
+
+        img = mlx_xpm_file_to_image(game -> mlx, path, &w, &h);
+        if (!img)
+        {
+                while(n--)
+                        if(to_free[n])
+                                mlx_destroy_image(game -> mlx, to_free[n]);
+                mlx_destroy_window(game -> mlx, game -> mlx_win);
+                mlx_destroy_display(game -> mlx);
+                print_error(strerror(errno), game);
+        }
+        return (img);
+}  
+
 void	load_images(t_game *game)
 {
-	int		w;
-	int		h;
-	void	*mlx;
+     void       **img[6];
+     char       *paths[6];
+     int        i;
 
-	game->xpm.file_w = "sprites/wall.xpm";
-	game->xpm.file_b = "sprites/block1.xpm";
-	game->xpm.file_f = "sprites/floor.xpm";
-	game->xpm.file_p = "sprites/player.xpm";
-	game->xpm.file_c = "sprites/collect.xpm";
-	game->xpm.file_e = "sprites/exit.xpm";
-        mlx = game->mlx;
-        game->img.wall = mlx_xpm_file_to_image (mlx, game->xpm.file_w, &w, &h);
-        if (!game->img.wall)
-        {
-                mlx_destroy_window(game->mlx,game->mlx_win);
-	        mlx_destroy_display(game->mlx);
-                print_intern_error(game);
-        }
-        game->img.block1 = mlx_xpm_file_to_image (mlx, game->xpm.file_b, &w, &h);
-        if (!game->img.block1)
-        {
-                mlx_destroy_image(game->mlx,game->img.wall);
-                mlx_destroy_window(game->mlx,game->mlx_win);
-	        mlx_destroy_display(game->mlx);
-                print_intern_error(game);
-        }
-        game->img.floor = mlx_xpm_file_to_image (mlx, game->xpm.file_f, &w, &h);
-        if (!game->img.floor)
-        {
-                mlx_destroy_image(game->mlx,game->img.wall);
-                mlx_destroy_image(game->mlx,game->img.block1);
-                mlx_destroy_window(game->mlx,game->mlx_win);
-	        mlx_destroy_display(game->mlx);
-                print_intern_error(game);
+     i = 0;
+     img[0] = &game -> img.block1;
+     img[1] = &game -> img.collect;
+     img[2] = &game -> img.exit;
+     img[3] = &game -> img.floor;
+     img[4] = &game -> img.player;
+     img[5] = &game -> img.wall;
+     paths[0] = "textures/block1.xpm";
+     paths[1] = "textures/collect.xpm";
+     paths[2] = "textures/exit.xpm";
+     paths[3] = "textures/floor.xpm";
+     paths[4] = "textures/player.xpm";
+     paths[5] = "textures/wall.xpm";
 
-        }
-        game->img.player = mlx_xpm_file_to_image (mlx, game->xpm.file_p, &w, &h);
-        if (!game->img.player)
-        {
-                mlx_destroy_image(game->mlx,game->img.wall);
-                mlx_destroy_image(game->mlx,game->img.block1);
-                mlx_destroy_image(game->mlx,game->img.floor);
-                mlx_destroy_window(game->mlx,game->mlx_win);
-	        mlx_destroy_display(game->mlx);
-                print_intern_error(game);
-        }
-        game->img.collect = mlx_xpm_file_to_image (mlx, game->xpm.file_c, &w, &h);
-        if (!game->img.collect)
-        {
-                mlx_destroy_image(game->mlx,game->img.wall);
-                mlx_destroy_image(game->mlx,game->img.block1);
-                mlx_destroy_image(game->mlx,game->img.floor);
-                mlx_destroy_image(game->mlx,game->img.player);
-                mlx_destroy_window(game->mlx,game->mlx_win);
-	        mlx_destroy_display(game->mlx);
-                print_intern_error(game);
-        }
-        game->img.exit = mlx_xpm_file_to_image (mlx, game->xpm.file_e, &w, &h);
-        if (!game->img.exit)
-        {
-                mlx_destroy_image(game->mlx,game->img.wall);
-                mlx_destroy_image(game->mlx,game->img.block1);
-                mlx_destroy_image(game->mlx,game->img.floor);
-                mlx_destroy_image(game->mlx,game->img.player);
-                mlx_destroy_image(game->mlx,game->img.collect);
-                mlx_destroy_window(game->mlx,game->mlx_win);
-	        mlx_destroy_display(game->mlx);
-                print_intern_error(game);
-        }
+     while(i < 6)
+     {
+        *img[i] = load_image(game, paths[i], img, i);
+        i++;
+     }
 }

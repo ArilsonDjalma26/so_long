@@ -16,6 +16,7 @@ void	exit_error(const char *msg)
 {
 	write (2, "Error\n", 6);
 	ft_putendl_fd (msg, 2);
+	write (2, "\n", 1);
 	exit (EXIT_FAILURE);
 }
 
@@ -23,16 +24,7 @@ void	print_error(const char *msg, t_game *game)
 {
 	write (2, "Error\n", 6);
 	ft_putendl_fd (msg, 2);
-	free_map(game->map);
-	free(game->mlx);
-	exit (EXIT_FAILURE);
-}
-
-void	print_intern_error(t_game *game)
-{
-
-	write (2, "Error\n", 6);
-	perror(NULL);
+	write (2, "\n", 1);
 	free_map(game->map);
 	free(game->mlx);
 	exit (EXIT_FAILURE);

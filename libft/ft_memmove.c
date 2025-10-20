@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/06/17 12:18:40 by aalbano           #+#    #+#             */
+/*   Updated: 2025/06/17 12:18:43 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	check_rectangle(char **map, t_game *game)
+void	*ft_memmove(void *dest, void const *src, size_t n)
 {
-	int	width;
-	int	i;
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
+
+	if ((!dest && n > 0) || (!src && n > 0))
+		return (NULL);
+	d = (unsigned char *)dest;
+	s = (unsigned const char *)src;
 	i = 0;
-	width = 0;
-	if (map || map[0])
+	if (d < s)
 	{
-		width = ft_strlen(map[0]);
-		while (map[i])
+		while (i < n)
 		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
+			d[i] = s[i];
 			i++;
 		}
 	}
-	game->width = width;
-	game->height = i;
+	else
+	{	
+		while (n--)
+			d[n] = s[n];
+	}
+	return (dest);
 }

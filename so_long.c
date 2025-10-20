@@ -17,16 +17,16 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		exit_error("Uso: ./so_long <maps/map.ber>\n");
+		exit_error("Uso: ./so_long <maps/map.ber>");
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
-		exit_error("Mapa deve ter a extencao .ber\n");
+		exit_error("Mapa deve ter a extencao .ber");
 	init_game(&game);
 	parse_map(argv[1], &game);
 	game.mlx = mlx_init();
 	if (!game.mlx)
-	print_error("Erro ao inicializar Minilibx\n", &game);
+	print_error("Erro ao inicializar Minilibx", &game);
 	game.mlx_win = mlx_new_window(game.mlx, game.width * TILE_SIZE,
-			game.height * TILE_SIZE, "so_long\n");
+			game.height * TILE_SIZE, "so_long");
 	if (!game.mlx_win)
 		print_error("Erro ao criar janela\n", &game);
 	load_images(&game);

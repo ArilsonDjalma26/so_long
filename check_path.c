@@ -58,9 +58,9 @@ void	check_path(t_game *game)
 
 	temp_map = copy_map(game -> map, game -> height);
 	if (!temp_map)
-		print_error("Erro ao copiar o mapa\n", game);
+		print_error("Erro ao copiar o mapa", game);
 	flood_fill(temp_map, game -> player_x, game -> player_y, game);
 	free_map (temp_map);
 	if (game -> collected != game -> collect_count || !game -> reached_exit)
-		print_error("Mapa impossivel de completar!\n", game);
+		print_error("Mapa impossivel de completar!", game);
 }

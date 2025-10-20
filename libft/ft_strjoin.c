@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/06/20 16:38:06 by aalbano           #+#    #+#             */
+/*   Updated: 2025/06/20 17:19:23 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	check_rectangle(char **map, t_game *game)
-{
-	int	width;
-	int	i;
+char	*ft_strjoin(char const *s1, char const *s2)
+{	
+	size_t		i;
+	size_t		j;
+	char		*ptr;
+
 	i = 0;
-	width = 0;
-	if (map || map[0])
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	ptr = (char *) malloc ((ft_strlen(s1)) + (ft_strlen(s2) + 1));
+	if (ptr != NULL)
 	{
-		width = ft_strlen(map[0]);
-		while (map[i])
+		while (s1[i])
 		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
+			ptr[i] = s1[i];
 			i++;
 		}
+		while (s2[j])
+		{
+			ptr[i + j] = s2[j];
+			j++;
+		}
+		ptr[i + j] = '\0';
 	}
-	game->width = width;
-	game->height = i;
+	return (ptr);
 }

@@ -1,33 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_rectangle.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr_uns.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Created: 2025/07/21 18:50:34 by aalbano           #+#    #+#             */
+/*   Updated: 2025/07/21 19:31:28 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	check_rectangle(char **map, t_game *game)
+static int	count_uns(unsigned int n)
 {
-	int	width;
-	int	i;
-	i = 0;
-	width = 0;
-	if (map || map[0])
+	int	count;
+
+	count = 0;
+	if (n != 0)
 	{
-		width = ft_strlen(map[0]);
-		while (map[i])
+		while (n != 0)
 		{
-			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagulo", game);
-			i++;
+			n /= 10;
+			count++;
 		}
 	}
-	game->width = width;
-	game->height = i;
+	else
+	{
+		count++;
+	}
+	return (count);
+}
+
+int	ft_putnbr_uns(int n)
+{
+	unsigned int	nb;
+	int				count;
+
+	count = 0;
+	nb = (unsigned int)n;
+	count = count_uns(nb);
+	if (nb >= 10)
+	{
+		ft_putnbr_uns(nb / 10);
+		ft_putnbr_uns(nb % 10);
+	}
+	else
+		ft_putchar (nb + '0');
+	return (count);
 }

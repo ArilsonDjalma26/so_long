@@ -1,10 +1,9 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft
 MLX_DIR = ./minilibx
-GNL_DIR = ./get_next_line
 PRINTF_DIR = ./ft_printf
 SRCS = so_long.c \
        init.c \
@@ -22,12 +21,12 @@ SRCS = so_long.c \
 	   handle_close.c \
 	   move_player.c \
 	   display_moves.c \
-       $(GNL_DIR)/get_next_line.c \
-       $(GNL_DIR)/get_next_line_utils.c \
+       get_next_line.c \
+       get_next_line_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
-HEADER = so_long.h
+HEADER = so_long.h get_next_line.h
 
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx.a
