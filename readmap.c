@@ -19,6 +19,7 @@ int	count_line(int fd)
 
 	count = 0;
 	line = get_next_line(fd);
+
 	while (line != NULL && line[0] != '\0' && !(line[0] == '\n' && line[1] == '\0'))
 	{
 		count++;
