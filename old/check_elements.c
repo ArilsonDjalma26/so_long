@@ -24,28 +24,7 @@ static void	check_tile(char c, t_game *game)
 		game -> collect_count++;
 }
 
-static void	check_element (t_game *game)
-{
-	if ((game->player_count == 0) && (game->exit_count == 0) && (game -> collect_count < 1))
-		print_error("O mapa deve ter: 1 player, ao menos 1 colecionavel e 1 saida", game);
-	if (game->player_count != 1)
-	{
-		if (game->player_count == 0)
-			print_error("O mapa deve ter um player", game);
-		else if (game->player_count > 1)
-			print_error("O mapa deve ter apenas um player", game);
-	}
-	if (game->exit_count != 1)
-	{
-		if (game->exit_count == 0)
-			print_error("O mapa deve ter uma saida", game);
-		else if (game->exit_count > 1)
-			print_error("O mapa deve ter apenas uma player", game);
-	}
-	if (game -> collect_count < 1)
-		print_error("O mapa deve ter ao menos um colecionavel", game);
-}
-void	check_elements (char **map, t_game *game)
+void	check_elements(char **map, t_game *game)
 {
 	int	x;
 	int	y;
@@ -66,6 +45,7 @@ void	check_elements (char **map, t_game *game)
 		}
 		y++;
 	}
-	check_element(game);
+	if ((game->player_count != 1)
+		|| (game -> collect_count < 1) || (game->exit_count != 1))
+		print_error ("Mapa deve ter 1 (P) 1 (E) e ao menos 1 (C)", game);
 }
-

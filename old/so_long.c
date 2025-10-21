@@ -16,9 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
-		exit_error("Uso: ./so_long <maps/map.ber>");
-	check_extension(argv[1], ".ber");
 	init_game(&game);
 	parse_map(argv[1], &game);
 	game.mlx = mlx_init();

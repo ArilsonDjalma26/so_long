@@ -86,7 +86,6 @@ void	init_game(t_game *game);
 void	check_walls(char **map, t_game *game);
 void	check_path(t_game *game);
 void	check_elements(char **map, t_game *game);
-void    check_extension(char *file, const char *ext);
 void	update_position(t_game *game, int new_x, int new_y);
 int		handle_keypress(int keycode, t_game *game);
 int		handle_close(t_game *game);

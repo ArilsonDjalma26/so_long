@@ -47,32 +47,7 @@ static char	*remove_newline(char *line)
 	return (clean_line);
 }
 
-static void check_extra_lines(t_game *game, int fd, char **map)
-{
-	char	*line;
-	int		i;
-
-	line = get_next_line(fd);
-	while (line)
-	{
-		i = 0;
-		while (line[i] == ' ' || line[i] == '\n')
-			i++;
-		if (line[i])
-		{
-
-			free(line);
-			close(fd);
-			get_next_line(-1);
-			free_map(map);
-			print_error("Linhas extras apos fim do mapa", game);
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-}
-
-static char	**fill_map(int fd, int height, t_game *game)
+char	**fill_map(int fd, int height)
 {
 	char	**map;
 	char	*line;
@@ -89,7 +64,11 @@ static char	**fill_map(int fd, int height, t_game *game)
 		line = get_next_line(fd);
 	}
 	map[i] = NULL;
-	check_extra_lines(game, fd, map);
+	while(line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
 	return (map);
 }
 
@@ -107,7 +86,7 @@ char	**read_map(char *file, t_game *game)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	map = fill_map(fd, height, game);
+	map = fill_map(fd, height);
 	close (fd);
 	if (!map || map[0] == NULL)
 	{

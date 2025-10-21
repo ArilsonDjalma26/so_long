@@ -71,12 +71,6 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
-	if (fd == -1)
-	{
-		free(rest);
-		rest = NULL;
-		return NULL;
-	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = malloc (sizeof(char) * (BUFFER_SIZE + 1));
@@ -94,9 +88,4 @@ char	*get_next_line(int fd)
 	}
 	update_line(&line, &rest);
 	return (line);
-}
-
-void	gnl_clear(void)
-{
-	get_next_line(-1);
 }

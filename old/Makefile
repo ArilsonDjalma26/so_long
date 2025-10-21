@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft
 MLX_DIR = ./minilibx
@@ -15,7 +15,6 @@ SRCS = so_long.c \
 	   check_walls.c \
 	   check_path.c \
 	   check_elements.c \
-	   check_extension.c \
 	   init_game.c \
 	   update_position.c \
 	   handle_keypress.c \
