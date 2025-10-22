@@ -14,7 +14,7 @@
 
 static void	check_tile(char c, t_game *game)
 {
-	if (!ft_strchr("10PBEC", c))
+	if (!ft_strchr("10PEC", c))
 		print_error("Mapa contem caracteres invalidos", game);
 	if (c == 'P')
 		game -> player_count++;
@@ -26,24 +26,40 @@ static void	check_tile(char c, t_game *game)
 
 static void	check_element (t_game *game)
 {
-	if ((game->player_count == 0) && (game->exit_count == 0) && (game -> collect_count < 1))
-		print_error("O mapa deve ter: 1 player, ao menos 1 colecionavel e 1 saida", game);
-	if (game->player_count != 1)
+	int	coins;
+	int players;
+	int	doors;
+	int x;
+	int	y;
+
+	coins = 0;
+	players = 0;
+	doors = 0;
+	x = 0;
+	y = 0;
+
+	while (game->map[y])
 	{
-		if (game->player_count == 0)
-			print_error("O mapa deve ter um player", game);
-		else if (game->player_count > 1)
-			print_error("O mapa deve ter apenas um player", game);
+		x = 0;
+		while (game->map[y][x])
+		{
+			if (game->map[y][x] == 'C')
+				coins++;
+			if (game->map[y][x] == 'P')
+				players++;
+			if (game->map[y][x] == 'E')
+				doors++;
+			x++;
+		}
+		y++;
 	}
-	if (game->exit_count != 1)
-	{
-		if (game->exit_count == 0)
-			print_error("O mapa deve ter uma saida", game);
-		else if (game->exit_count > 1)
-			print_error("O mapa deve ter apenas uma player", game);
-	}
-	if (game -> collect_count < 1)
-		print_error("O mapa deve ter ao menos um colecionavel", game);
+
+	if (doors != 1)
+		print_error("Mapa deve ter 1 porta!", game);
+	if (players != 1)
+		print_error("Mapa deve ter 1 player!", game);
+	if (coins < 1)
+		print_error("Mapa deve ter pelo menos 1 coletavel!", game);
 }
 void	check_elements (char **map, t_game *game)
 {

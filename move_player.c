@@ -21,7 +21,7 @@ void	move_player(t_game *game, int dx, int dy)
 	new_x = game -> player_x + dx;
 	new_y = game -> player_y + dy;
 	next = game->map[new_y][new_x];
-	if ((next == '1') || (next == 'B')
+	if ((next == '1')
 		|| (next == 'E' && game->collect_count != 0))
 		return ;
 	update_position (game, new_x, new_y);

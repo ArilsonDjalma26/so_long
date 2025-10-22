@@ -37,7 +37,6 @@
 typedef struct t_xpm
 {
 	void	*file_w;
-	void	*file_b;
 	void	*file_f;
 	void	*file_p;
 	void	*file_c;
@@ -50,7 +49,6 @@ typedef struct s_img
 	void	*collect;
 	void	*floor;
 	void	*wall;
-	void	*block1;
 	void	*exit;
 }t_img;
 
@@ -71,10 +69,9 @@ typedef struct s_game
 	int		moves;
 	int		collected;
 	int		reached_exit;
-}t_game;
+} t_game;
 
 int		count_line(int fd);
-char	**read_map(char *file, t_game *game);
 void	draw_map(t_game *game);
 void	load_images(t_game *game);
 void	exit_error(const char *msg);
@@ -82,14 +79,15 @@ void	free_map(char **map);
 void	print_error(const char *msg, t_game *game);
 void	parse_map(char *file, t_game *game);
 void	check_rectangle(char **map, t_game *game);
-void	init_game(t_game *game);
+void	init_game(t_game *game, char *filename);
 void	check_walls(char **map, t_game *game);
 void	check_path(t_game *game);
 void	check_elements(char **map, t_game *game);
-void    check_extension(char *file, const char *ext);
+void	check_extension(const char *filename, const char *ext);
 void	update_position(t_game *game, int new_x, int new_y);
 int		handle_keypress(int keycode, t_game *game);
 int		handle_close(t_game *game);
 void	move_player(t_game *game, int dx, int dy);
 void	display_moves(t_game *game);
+char    **get_map(char *filename);
 #endif

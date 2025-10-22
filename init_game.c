@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_game->c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,26 +11,20 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "stdio.h"
 
-void	init_game(t_game *game)
+void	init_game(t_game *game, char *filename)
 {
-	game->mlx = NULL;
-	game->mlx_win = NULL;
-	game->map = NULL;
-	game->img.exit = NULL;
-	game->img.collect = NULL;
-	game->img.player = NULL;
-	game->img.floor = NULL;
-	game->img.block1 = NULL;
-	game->img.wall = NULL;
-	game->width = 0;
-	game->height = 0;
-	game->player_x = 0;
-	game->player_y = 0;
-	game->player_count = 0;
-	game->collect_count = 0;
-	game->exit_count = 0;
+			
+
+	game->mlx = mlx_init();
+	game->map = get_map(filename);
 	game->moves = 0;
-	game -> reached_exit = 0;
-	game -> collected = 0;
+	if (!game->mlx)
+		print_error("Erro ao inicializar Minilibx", game);
+	load_images(game);
+	game->mlx_win = mlx_new_window(game->mlx, game->width * TILE_SIZE, game->height * TILE_SIZE, "so_long");
+	if (!game->mlx_win)
+		print_error("Erro ao criar janela\n", game);
+	draw_map(game);
 }

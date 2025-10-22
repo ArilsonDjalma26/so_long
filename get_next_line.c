@@ -60,7 +60,10 @@ static void	update_line(char **line, char **rest)
 	ptr = ft_strchr(*line, '\n');
 	if (ptr)
 	{
-		*rest = ft_strdup(ptr + 1);
+		if (ft_strlen(ptr + 1) == 0)
+			*rest = NULL;
+		else
+			*rest = ft_strdup(ptr + 1);
 		*(ptr + 1) = '\0';
 	}
 }
@@ -71,12 +74,6 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
-	if (fd == -1)
-	{
-		free(rest);
-		rest = NULL;
-		return NULL;
-	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = malloc (sizeof(char) * (BUFFER_SIZE + 1));
@@ -94,9 +91,4 @@ char	*get_next_line(int fd)
 	}
 	update_line(&line, &rest);
 	return (line);
-}
-
-void	gnl_clear(void)
-{
-	get_next_line(-1);
 }

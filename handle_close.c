@@ -22,8 +22,6 @@ int	handle_close(t_game *game)
 		mlx_destroy_image(game->mlx, game->img.exit);
 	if (game->img.wall)
 		mlx_destroy_image(game->mlx, game->img.wall);
-	if (game->img.block1)
-		mlx_destroy_image(game->mlx, game->img.block1);
 	if (game->img.floor)
 		mlx_destroy_image(game->mlx, game->img.floor);
 	if (game->mlx_win)

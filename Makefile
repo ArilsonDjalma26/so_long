@@ -1,14 +1,13 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft
-MLX_DIR = ./minilibx
+MLX_DIR = ./minilibx-linux
 PRINTF_DIR = ./ft_printf
 SRCS = so_long.c \
        init.c \
        draw.c \
-       readmap.c \
 	   errors.c \
 	   parse_map.c \
 	   check_rectangle.c \
@@ -21,13 +20,12 @@ SRCS = so_long.c \
 	   handle_keypress.c \
 	   handle_close.c \
 	   move_player.c \
+	   get_map.c \
 	   display_moves.c \
-       get_next_line.c \
-       get_next_line_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
-HEADER = so_long.h get_next_line.h
+HEADER = so_long.h
 
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx.a

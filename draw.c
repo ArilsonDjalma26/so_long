@@ -36,8 +36,6 @@ static void	draw_tile(t_game *game, int x, int y)
 		put_img (game, game -> img.collect, x, y);
 	else if (c == 'E')
 		put_img (game, game -> img.exit, x, y);
-	else if (c == 'B')
-		put_img (game, game -> img.block1, x, y);
 }
 
 void	draw_map(t_game *game)

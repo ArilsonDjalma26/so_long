@@ -12,24 +12,31 @@
 
 #include "so_long.h"
 
-void    check_extension(char *file, const char *ext)
+static int	has_valid_extension(const char *filename, const char *ext)
 {
-    int     len_ext;
-    int     len_file;
-    int     i;
+	int		len_file;
+	int		len_ext;
 
-    i = 0;
-    len_ext = ft_strlen(ext);
-    len_file = ft_strlen(file);
-
-    while (ext[i])
-    {
-        if (len_file < len_ext)
-            exit_error("Mapa deve ter a extencao .ber");
-        if (file[len_file] != ext[len_ext])
-            exit_error("Mapa deve ter a extencao .ber");
-        len_ext--;
-        len_file--;
-        i++;
-    }
+	len_file = ft_strlen(filename);
+	len_ext = ft_strlen(ext);
+	if (len_file <= len_ext)
+		return (0);
+	return (ft_strncmp(filename + len_file - len_ext, ext, len_ext) == 0);
 }
+
+static void	check_file_access(const char *filename)
+{
+	if (open(filename, O_RDONLY) < 0)
+	{
+		exit_error("Erro ao abrir arquivo!");
+	}
+}
+
+void	check_extension(const char *filename, const char *ext)
+{
+	if (!has_valid_extension(filename, ext))
+		exit_error("Extensão inválida!");
+
+	check_file_access(filename);
+}
+

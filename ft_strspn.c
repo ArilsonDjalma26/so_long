@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   ft_strspn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 15:58:08 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/11 15:58:10 by aalbano          ###   ########.fr       */
+/*   Created: 2025/10/22 12:25:21 by aalbano           #+#    #+#             */
+/*   Updated: 2025/10/22 12:25:25 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_player(t_game *game, int dx, int dy)
+size_t      ft_strspn(const char *s, const char *accept)
 {
-	int		new_x;
-	int		new_y;
-	char	next;
+    int     found;
+    size_t  j;
+    size_t  i;
 
-	new_x = game -> player_x + dx;
-	new_y = game -> player_y + dy;
-	next = game->map[new_y][new_x];
-	if ((next == '1') || (next == 'B')
-		|| (next == 'E' && game->collect_count != 0))
-		return ;
-	update_position (game, new_x, new_y);
-	draw_map (game);
-	display_moves (game);
+    i = 0;
+    while (s[i])
+    {
+        found = 0;
+        j = 0;
+       while (accept[j])
+       {
+            if (s[i] == accept[j])
+            {
+                found = 1;
+                break ;
+            }
+            j++;
+       }
+       if (!found)
+        break ;
+       i++;
+    }
+    return (i);
 }
