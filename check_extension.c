@@ -27,16 +27,13 @@ static int	has_valid_extension(const char *filename, const char *ext)
 static void	check_file_access(const char *filename)
 {
 	if (open(filename, O_RDONLY) < 0)
-	{
-		exit_error("Erro ao abrir arquivo!");
-	}
+		exit_error("Arquivo vazio ou inesistente!");
 }
 
 void	check_extension(const char *filename, const char *ext)
 {
 	if (!has_valid_extension(filename, ext))
 		exit_error("Extensão inválida!");
-
 	check_file_access(filename);
 }
 

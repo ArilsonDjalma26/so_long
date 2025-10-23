@@ -11,14 +11,10 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "stdio.h"
 
-void	init_game(t_game *game, char *filename)
+void	init_game(t_game *game)
 {
-			
-
 	game->mlx = mlx_init();
-	game->map = get_map(filename);
 	game->moves = 0;
 	if (!game->mlx)
 		print_error("Erro ao inicializar Minilibx", game);
@@ -26,5 +22,5 @@ void	init_game(t_game *game, char *filename)
 	game->mlx_win = mlx_new_window(game->mlx, game->width * TILE_SIZE, game->height * TILE_SIZE, "so_long");
 	if (!game->mlx_win)
 		print_error("Erro ao criar janela\n", game);
-	draw_map(game);
+	draw_map(game);//Verificar erro
 }

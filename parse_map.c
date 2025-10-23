@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-# include <stdio.h>
 
 void	parse_map(char *file, t_game *game)
 {

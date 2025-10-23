@@ -13,9 +13,10 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <string.h>
 # include <errno.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -79,7 +80,7 @@ void	free_map(char **map);
 void	print_error(const char *msg, t_game *game);
 void	parse_map(char *file, t_game *game);
 void	check_rectangle(char **map, t_game *game);
-void	init_game(t_game *game, char *filename);
+void	init_game(t_game *game);
 void	check_walls(char **map, t_game *game);
 void	check_path(t_game *game);
 void	check_elements(char **map, t_game *game);

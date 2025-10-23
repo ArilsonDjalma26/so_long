@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 		exit_error("Uso: ./so_long <maps/map.ber>");
 	check_extension(argv[1], ".ber");
 	parse_map(argv[1], &game);
-	init_game(&game, argv[1]);
+	init_game(&game);
 	mlx_hook(game.mlx_win, 2, 1L << 0, handle_keypress, &game);
 	mlx_hook(game.mlx_win, 17, 0, handle_close, &game);
 	mlx_loop(game.mlx);
