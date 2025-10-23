@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_extention.c                                  :+:      :+:    :+:   */
+/*   check_extension.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 19:09:20 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/20 19:09:24 by aalbano          ###   ########.fr       */
+/*   Updated: 2025/10/23 16:55:02 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	has_valid_extension(const char *filename, const char *ext)
 static void	check_file_access(const char *filename)
 {
 	if (open(filename, O_RDONLY) < 0)
-		exit_error("Arquivo vazio ou inesistente!");
+		exit_error("Arquivo inexistente ou sem permissão!");
 }
 
 void	check_extension(const char *filename, const char *ext)
@@ -36,4 +36,3 @@ void	check_extension(const char *filename, const char *ext)
 		exit_error("Extensão inválida!");
 	check_file_access(filename);
 }
-

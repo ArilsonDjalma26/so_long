@@ -8,7 +8,7 @@ PRINTF_DIR = ./ft_printf
 SRCS = so_long.c \
        init.c \
        draw.c \
-	   errors.c \
+	   utils.c \
 	   parse_map.c \
 	   check_rectangle.c \
 	   check_walls.c \

@@ -6,7 +6,7 @@
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:45:53 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/13 11:48:56 by aalbano          ###   ########.fr       */
+/*   Updated: 2025/10/23 16:45:39 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 # include "minilibx-linux/mlx.h"
 # include <string.h>
 # include <errno.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "get_next_line.h"
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
@@ -70,7 +68,7 @@ typedef struct s_game
 	int		moves;
 	int		collected;
 	int		reached_exit;
-} t_game;
+}	t_game;
 
 int		count_line(int fd);
 void	draw_map(t_game *game);
@@ -78,6 +76,8 @@ void	load_images(t_game *game);
 void	exit_error(const char *msg);
 void	free_map(char **map);
 void	print_error(const char *msg, t_game *game);
+void	free_images(t_game *game);
+void	cleanup_and_exit(t_game *game, const char *msg);
 void	parse_map(char *file, t_game *game);
 void	check_rectangle(char **map, t_game *game);
 void	init_game(t_game *game);
@@ -90,5 +90,5 @@ int		handle_keypress(int keycode, t_game *game);
 int		handle_close(t_game *game);
 void	move_player(t_game *game, int dx, int dy);
 void	display_moves(t_game *game);
-char    **get_map(char *filename);
+char	**get_map(char *filename);
 #endif

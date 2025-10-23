@@ -6,7 +6,7 @@
 /*   By: aalbano <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:31:43 by aalbano           #+#    #+#             */
-/*   Updated: 2025/10/04 16:31:49 by aalbano          ###   ########.fr       */
+/*   Updated: 2025/10/23 16:55:38 by aalbano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	check_rectangle(char **map, t_game *game)
 {
 	int	width;
 	int	i;
+
 	i = 0;
 	width = 0;
 	if (map || map[0])
@@ -24,7 +25,7 @@ void	check_rectangle(char **map, t_game *game)
 		while (map[i])
 		{
 			if ((int)ft_strlen(map[i]) != width)
-				print_error("O mapa nao e rectagular", game);
+				print_error("O mapa nao e rectagular!", game);
 			i++;
 		}
 	}

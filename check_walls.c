@@ -27,7 +27,7 @@ void	check_walls(char **map, t_game *game)
 				|| (x == 0) || (x == game -> width - 1))
 			{
 				if (map[y][x] != '1')
-					print_error ("Mapa nao esta rodeado de paredes", game);
+					print_error ("Mapa nao esta rodeado de paredes!", game);
 			}
 			x++;
 		}
